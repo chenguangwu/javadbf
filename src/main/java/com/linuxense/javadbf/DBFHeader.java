@@ -27,7 +27,6 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -110,7 +109,7 @@ public class DBFHeader {
 			dataInput.readInt();
 		}
 
-		List<DBFField> v_fields = new ArrayList<>();
+		List<DBFField> v_fields = new ArrayList();
 
 		this.usedCharset = this.detectedCharset;
 		if (charset != null) {
@@ -136,7 +135,7 @@ public class DBFHeader {
 
 		}
 		this.fieldArray = v_fields.toArray(new DBFField[v_fields.size()]);
-		List<DBFField> userFields = new ArrayList<>();
+		List<DBFField> userFields = new ArrayList();
 		if (showDeletedRows) {
 			DBFField deletedField = new DBFField("deleted", DBFDataType.LOGICAL);
 			userFields.add(deletedField);

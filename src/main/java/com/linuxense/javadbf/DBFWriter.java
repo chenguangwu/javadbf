@@ -30,7 +30,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -55,7 +54,7 @@ import java.util.List;
 public class DBFWriter extends DBFBase implements java.io.Closeable {
 
 	private DBFHeader header;
-	private List<Object[]> v_records = new ArrayList<>();
+	private List<Object[]> v_records = new ArrayList();
 	private int recordCount = 0;
 	//Open and append records to an existing DBF
 	private RandomAccessFile raf = null;

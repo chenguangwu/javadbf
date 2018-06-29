@@ -21,8 +21,8 @@ License along with this library.  If not, see <http://www.gnu.org/licenses/>.
 package com.linuxense.javadbf;
 
 
+
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Base class for DBFReader and DBFWriter. Support for choosing implemented

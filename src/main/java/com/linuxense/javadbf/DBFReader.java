@@ -30,18 +30,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TimeZone;
+import java.util.*;
 
 /**
  * DBFReader class can creates objects to represent DBF data.
@@ -297,7 +288,7 @@ public class DBFReader extends DBFBase implements Closeable {
 		if (this.closed) {
 			throw new IllegalArgumentException("this DBFReader is closed");
 		}
-		List<Object> recordObjects = new ArrayList<>(this.getFieldCount());
+		List<Object> recordObjects = new ArrayList(this.getFieldCount());
 		try {
 			boolean isDeleted = false;
 
@@ -495,7 +486,6 @@ public class DBFReader extends DBFBase implements Closeable {
 			return null;
 		}
 	}
-
 	private Object readDoubleField(DBFField field) throws IOException {
 		byte[] data = new byte[field.getLength()];
 		int bytesReaded = this.dataInputStream.read(data);
