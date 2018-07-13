@@ -30,11 +30,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 /*
  DBFWriter
@@ -358,7 +354,12 @@ public class DBFWriter extends DBFBase implements java.io.Closeable {
 				if (objectArray[j] != null) {
 					GregorianCalendar calendar = new GregorianCalendar();
 					calendar.setTime((Date) objectArray[j]);
-					dataOutput.write(String.valueOf(calendar.get(Calendar.YEAR)).getBytes(StandardCharsets.US_ASCII));
+					byte[] year_byte=new byte[4];
+                    Arrays.fill(year_byte,(byte) '0');
+                    byte[] str_byte=String.valueOf(calendar.get(Calendar.YEAR)).getBytes(StandardCharsets.US_ASCII);
+                    System.arraycopy(str_byte,0,year_byte,4-str_byte.length,str_byte.length);
+					dataOutput.write(year_byte);
+//					dataOutput.write(String.valueOf(calendar.get(Calendar.YEAR)).getBytes(StandardCharsets.US_ASCII));
 					dataOutput.write(DBFUtils.textPadding(String.valueOf(calendar.get(Calendar.MONTH) + 1),
 							StandardCharsets.US_ASCII, 2, DBFAlignment.RIGHT, (byte) '0'));
 					dataOutput.write(DBFUtils.textPadding(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)),
